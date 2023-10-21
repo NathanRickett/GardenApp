@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@id/gardensFragment">
+    <fragment
+        android:id="@+id/gardensFragment"
+        android:name="com.example.gardenapp.ui.garden.GardenFragment"
+        android:label="fragment_garden"
+        tools:layout="@layout/fragment_garden" >
+        <action
+            android:id="@+id/action_gardensFragment_to_plantFragment"
+            app:destination="@id/plantFragment"
+            app:enterAnim="@anim/nav_default_pop_enter_anim" />
+        <argument
+            android:name="plant_id_argument"
+            app:argType="integer"
+            android:defaultValue="0" />
+    </fragment>
+    <fragment
+        android:id="@+id/plantFragment"
+        android:name="com.example.gardenapp.ui.plant.PlantFragment"
+        android:label="fragment_plant"
+        tools:layout="@layout/fragment_plant" />
+    <fragment
+        android:id="@+id/dashboardFragment"
+        android:name="com.example.gardenapp.ui.dashboard.DashboardFragment"
+        android:label="fragment_dashboard"
+        tools:layout="@layout/fragment_dashboard" />
+    <fragment
+        android:id="@+id/notificationsFragment"
+        android:name="com.example.gardenapp.ui.notifications.NotificationsFragment"
+        android:label="fragment_notifications"
+        tools:layout="@layout/fragment_notifications" />
+</navigation>
