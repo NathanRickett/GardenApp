@@ -18,8 +18,10 @@ import java.util.ArrayList;
 
 public class GardenAdapter extends RecyclerView.Adapter<GardenAdapter.MyViewHolder> {
 
-    Context context;
-    ArrayList<Plant> plants;
+    private Context context;
+    private ArrayList<Plant> plants;
+
+    private MyViewHolder viewHolder;
 
     private final RecyclerViewInterface rvInterface;
 
@@ -36,7 +38,8 @@ public class GardenAdapter extends RecyclerView.Adapter<GardenAdapter.MyViewHold
         //this is where you inflate the layout (Gives a look to our cards)
         LayoutInflater inflater = LayoutInflater.from(context);
         View view = inflater.inflate(R.layout.garden_card_layout, parent, false);
-        return new GardenAdapter.MyViewHolder(view, rvInterface);
+        viewHolder = new GardenAdapter.MyViewHolder(view, rvInterface);
+        return viewHolder;
     }
 
     @Override
@@ -53,6 +56,10 @@ public class GardenAdapter extends RecyclerView.Adapter<GardenAdapter.MyViewHold
             return this.plants.size();
         }
         return 0;
+    }
+
+    public MyViewHolder getViewHolder() {
+        return viewHolder;
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
@@ -94,6 +101,10 @@ public class GardenAdapter extends RecyclerView.Adapter<GardenAdapter.MyViewHold
                     return false;
                 }
             });
+        }
+
+        public CardView getPlantCard() {
+            return plantCard;
         }
     }
 }

@@ -1,5 +1,7 @@
 package com.example.gardenapp.ui.plant;
 
+import android.util.Log;
+
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
@@ -10,7 +12,8 @@ public class PlantViewModel extends ViewModel {
     private MutableLiveData<Plant> plantState;
 
     public PlantViewModel() {
-
+        Log.d("debugging", "calling plant view model constructor");
+        plantState = new MutableLiveData(new Plant("test", 69));
     }
 
     public MutableLiveData<Plant> getPlantState() {
@@ -18,12 +21,16 @@ public class PlantViewModel extends ViewModel {
     }
 
     public void initPlantState(Plant plant) {
-        plantState = new MutableLiveData(plant);
+        this.plantState = new MutableLiveData(plant);
     }
 
 
 
     public String getPlantDescription() {
+        if (this.plantState == null) {
+            return "null";
+        }
+
         if (this.plantState.getValue().getDescription() == null) {
             return "no description available";
         }
@@ -35,6 +42,10 @@ public class PlantViewModel extends ViewModel {
     }
 
     public String getPlantTitle() {
+        if (this.plantState == null) {
+            return "null";
+        }
+
         if (this.plantState.getValue().getPlantName() == null) {
             return "no plant name available";
         }
@@ -43,6 +54,22 @@ public class PlantViewModel extends ViewModel {
         }
 
         return this.plantState.getValue().getPlantName();
+    }
+
+    public Plant getPlantObject() {
+        return this.plantState.getValue();
+    }
+
+    public String getPlantCare() {
+        if (getPlantObject() != null) {
+            if (getPlantObject().getCare() != null) {
+                return this.getPlantObject().getCare();
+            }
+            else {
+                return "null plant care";
+            }
+        }
+        return "null plant";
     }
 
     // TODO: Implement the ViewModel

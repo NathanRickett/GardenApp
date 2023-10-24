@@ -33,4 +33,12 @@
         android:name="com.example.gardenapp.ui.notifications.NotificationsFragment"
         android:label="fragment_notifications"
         tools:layout="@layout/fragment_notifications" />
+    <navigation android:id="@+id/plant_navigation"
+        app:startDestination="@id/plantInfoFragment">
+        <fragment
+            android:id="@+id/plantInfoFragment"
+            android:name="com.example.gardenapp.ui.plant.PlantInfoFragment"
+            android:label="fragment_plant_info"
+            tools:layout="@layout/fragment_plant_info" />
+    </navigation>
 </navigation>

@@ -1,25 +1,20 @@
 package com.example.gardenapp.ui.garden;
 
-import android.app.Activity;
-import android.content.Context;
+
 import android.os.Bundle;
-import android.service.credentials.Action;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
-import androidx.annotation.NonNull;
+import androidx.appcompat.widget.PopupMenu;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
-import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
-import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.gardenapp.R;
 import com.example.gardenapp.RecyclerViewInterface;
 
@@ -81,6 +76,30 @@ public class GardenFragment extends Fragment implements RecyclerViewInterface {
     // a long click listener for cards listed in the recycler view
     //this will eventually just pull up a menu instead of deleting
     public void onItemLongClick(int position) {
+        GardenAdapter.MyViewHolder viewHolder = adapter.getViewHolder();
+        CardView card = viewHolder.getPlantCard();
+        showPopUp(card, position);
+    }
+
+    private void showPopUp(View card, int position) {
+        PopupMenu popupMenu = new PopupMenu(getContext(), card);
+        final int DELETE_PLANT_POP_UP_ITEM = R.id.pop_up_delete_plant;
+        popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+
+                if (item.getItemId() == DELETE_PLANT_POP_UP_ITEM) {
+                    removePlant(position);
+                }
+                return false;
+            }
+        });
+
+        popupMenu.inflate(R.menu.garden_card_popup_menu);
+        popupMenu.show();
+    }
+
+    private void removePlant(int position) {
         //remove the item from the data set
         viewModel.removePlant(position);
 
