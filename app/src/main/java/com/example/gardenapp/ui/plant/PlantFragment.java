@@ -27,8 +27,14 @@ import android.widget.ViewSwitcher;
 
 import com.example.gardenapp.R;
 import com.example.gardenapp.data.plant.Plant;
+import com.example.gardenapp.data.plant.PlantAPIHandler;
+import com.example.gardenapp.data.plant.QueryBuilder;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
+
+import org.json.JSONObject;
+
+import java.util.HashMap;
 
 public class PlantFragment extends Fragment implements ViewModelStoreOwner {
 
@@ -46,7 +52,6 @@ public class PlantFragment extends Fragment implements ViewModelStoreOwner {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
     }
 
     @Override
